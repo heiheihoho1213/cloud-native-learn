@@ -1,0 +1,25 @@
+name: CI/CD Deploy
+
+on:
+  push:
+    branches: [main, master]
+
+jobs:
+  deploy:
+    # 自托管 Runner：Settings → Actions → Runners → New self-hosted runner
+    runs-on: self-hosted
+
+    steps:
+      - name: 检出代码
+        uses: actions/checkout@v4
+
+      - name: 构建镜像并部署
+        run: |
+          chmod +x scripts/deploy.sh
+          ./scripts/deploy.sh "${GITHUB_SHA::7}"
+
+      - name: 验证部署
+        run: |
+          kubectl get pods -n cicd-demo
+          kubectl run curl-test --rm -i --restart=Never --image=curlimages/curl:latest -- \
+            curl -s http://cicd-demo.cicd-demo.svc:8080/

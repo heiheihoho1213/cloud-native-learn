@@ -1,0 +1,25 @@
+# GitLab CI/CD：push 到 main/master 自动部署到 K8s
+# 需要在本机注册带 minikube 标签的自托管 Runner
+
+stages:
+  - deploy
+
+variables:
+  KUBE_NAMESPACE: cicd-demo
+
+deploy:
+  stage: deploy
+  # 自托管 Runner 标签（注册 Runner 时自行设置，与这里保持一致）
+  tags:
+    - minikube
+  rules:
+    - if: $CI_COMMIT_BRANCH == "main" || $CI_COMMIT_BRANCH == "master"
+  script:
+    - chmod +x scripts/deploy.sh
+    - ./scripts/deploy.sh "${CI_COMMIT_SHORT_SHA}"
+  after_script:
+    - kubectl get pods -n "${KUBE_NAMESPACE}"
+    - |
+      kubectl run curl-test-${CI_JOB_ID} --rm -i --restart=Never \
+        --image=curlimages/curl:latest -- \
+        curl -s "http://cicd-demo.${KUBE_NAMESPACE}.svc:8080/"

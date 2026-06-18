@@ -20,7 +20,7 @@
 - 一个可运行的业务容器镜像
 - 能够在本地通过 `http://localhost:8080` 访问你的应用
 
-> 项目地址：<a href="./docker-demo">docker-demo</a>
+> 项目地址：<a href="./1.docker-demo">docker-demo</a>
 ---
 
 ## 任务二：集群上手 —— 部署 Nginx 并对外暴露服务
@@ -37,7 +37,7 @@
 - 一个运行中的 Nginx Deployment（副本数 >= 1）
 - 能够通过浏览器或 `curl` 访问 Nginx 欢迎页
 
-> 项目地址：<a href="./k8s-demo">k8s-demo</a>
+> 项目地址：<a href="./2.k8s-demo">k8s-demo</a>
 ---
 
 ## 任务三：发布策略 —— 触发滚动更新并观测平滑切换
@@ -55,7 +55,7 @@
 - 一次无中断的应用版本升级过程
 - 能够清楚描述新旧 Pod 替换过程中流量的切换逻辑
 
-> 项目地址：<a href="./k8s-pod-update-demo">k8s-pod-update-demo</a>
+> 项目地址：<a href="./3.k8s-pod-update-demo">k8s-pod-update-demo</a>
 ---
 
 ## 任务四：自动化 —— 搭建端到端 CI/CD 流水线
@@ -72,6 +72,7 @@
 - 一条自动化流水线，代码提交后自动完成全流程
 - 验证流水线确实触发了 Kubernetes 中的 Pod 更新
 
+> 项目地址：<a href="./4.cicd-demo">cicd-demo</a>
 ---
 
 ## 任务五：流量治理 —— 微服务版本按权重路由
@@ -88,7 +89,7 @@
 - 一个统一的访问入口，请求按比例（例如 v1:80%，v2:20%）自动分发到不同版本
 - 能够通过连续访问验证流量分布是否符合预期
 
-> 项目地址：<a href="./k8s-microapp-switch-demo">k8s-microapp-switch-demo</a>
+> 项目地址：<a href="./5.k8s-microapp-switch-demo">k8s-microapp-switch-demo</a>
 ---
 
 ## 任务六：可观测性 —— 排障模拟与链路分析
@@ -105,6 +106,7 @@
 - 一套完整的可观测性环境
 - 清晰的故障定位路径：“通过指标发现异常 → 查看日志找到错误堆栈 → 追踪链路定位到具体代码行”
 
+> 项目地址：<a href="./6.k8s-monitor">k8s-monitor</a>
 ---
 
 ## 学习路径建议
